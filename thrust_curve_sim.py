@@ -8,8 +8,6 @@ import numpy as np
 from matplotlib import pyplot as plt
 import csv
 
-thrust_curve = 
-
 # Initial values
 
 z = 0.001
@@ -75,6 +73,7 @@ def Cd(velocity):
 ## Drag
 
 def drag(v, z):
+    print(rho(z))
     return(Cd(v)*0.5*np.sign(v)*rho(z)*v**2)
 
 def update_mass(time):
