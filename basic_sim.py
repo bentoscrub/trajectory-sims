@@ -1,8 +1,9 @@
 """
 This is a basic trajectory simulation for low-mid powered rockets. It serves as a template for trajectory sims with the aim of being expandable to more complicated scenarios.
 
-This simulation follows the example in the following website:
+This simulation follows the example in the following websites:
 https://pages.vassar.edu/magnes/2019/05/12/computational-simulation-of-rocket-trajectories/
+http://www.braeunig.us/space/atmmodel.htm
 
 See the Latex doc for more details
 """
@@ -21,16 +22,16 @@ t = 0.0
 
 g = 9.81        # g at sea level
 dt = 0.01
-burnout_time = 6.9
+burnout_time = 4.8
 
 ## Drag stuff
-Cd = 0.1        # According to some website, this is a reasonable guess
-A = 0.8         # This is cross-sectional area. I'm too dumb to work it out
+Cd = 1          # According to some website, this is a reasonable guess
+A = 0.08         # This is cross-sectional area. I'm too dumb to work it out
 R = 8.314       # Gas Constant
 M = 0.029       # Molar mass of air
 T0 = 290        # Baseline Temperature
 P0 = 101325     # Baseline Pressure
-L = -6          # Temperature Gradient up to 12km
+L = -0.006      # Temperature Gradient up to 12km
 
 # Gravity. Shouldn't change for 99% of the time, but just in case
 def grav(mass, height):
@@ -42,7 +43,7 @@ def thrust(time):
     if t >= burnout_time:
         return(0)
     else:
-        return(838)
+        return(1590)
 
 # Drag calculations
 
@@ -59,7 +60,7 @@ def P(height):
 ## rho
 
 def rho(height):
-    return((M*T(height))/(R*P(height)))
+    return((M*T(height))/(0.001*R*P(height)))
 
 ## Drag
 
